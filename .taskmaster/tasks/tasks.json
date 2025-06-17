@@ -1,0 +1,1001 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Initialize Project Structure with uv Package Manager",
+        "description": "Set up the project foundation with Python 3.12 and uv package manager, create directory structure and basic configuration files",
+        "details": "Create project directory structure: src/, tests/, config/, logs/, output/. Initialize uv project with `uv init`. Set up pyproject.toml with Python 3.12 requirement. Create basic __init__.py files and main entry point. Set up .gitignore for Python projects.",
+        "testStrategy": "Verify project structure exists, uv environment activates correctly, and Python 3.12 is available",
+        "priority": "high",
+        "dependencies": [],
+        "status": "done",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create Project Directory and Initialize with uv",
+            "description": "Set up the project directory and initialize it using uv to establish the basic project structure.",
+            "dependencies": [],
+            "details": "Use the command `uv init project_name` to create and initialize the project directory. This will generate essential files such as `pyproject.toml`, `README.md`, and `main.py`.\n<info added on 2025-06-17T01:27:09.972Z>\nプロジェクト初期化が完了しました。\n\n実行されたコマンド：\n`uv init --name sirabas-scraping --python 3.12`\n\n自動生成されたファイル：\n- pyproject.toml (Python 3.12要求を含む)\n- main.py (エントリーポイント)\n- README.md\n- .python-version\n\n作成されたディレクトリ構造：\n- src/ (ソースコード用)\n  - scrapers/ (スクレイパーモジュール)\n  - parsers/ (パーサーモジュール)\n  - models/ (データモデル)\n  - exporters/ (エクスポートモジュール)\n  - utils/ (ユーティリティ)\n- tests/ (テスト用)\n- config/ (設定ファイル用)\n- logs/ (ログファイル用)\n- output/ (出力ファイル用)\n\n各Pythonパッケージディレクトリに__init__.pyファイルを配置し、プロジェクトの基本構造が整いました。\n</info added on 2025-06-17T01:27:09.972Z>",
+            "status": "done"
+          },
+          {
+            "id": 2,
+            "title": "Set Up Virtual Environment",
+            "description": "Create a virtual environment for the project to manage dependencies in isolation.",
+            "dependencies": [
+              1
+            ],
+            "details": "Navigate to the project directory and run `uv venv` to create a virtual environment. This will generate a `.venv` directory containing the isolated environment.\n<info added on 2025-06-17T01:28:43.868Z>\n仮想環境のセットアップが完了しました。\n\n実行内容：\n1. `uv venv` コマンドで仮想環境を作成\n   - Python 3.12.8 (pyenvから) を使用\n   - .venvディレクトリに仮想環境が作成されました\n   - アクティベート方法: `source .venv/bin/activate`\n\n2. .gitignoreファイルを更新\n   - Python関連の除外設定を追加\n   - .venv/, __pycache__/, *.pyc など\n   - プロジェクト固有の除外設定も追加（logs/*, output/*）\n\n3. 空ディレクトリの追跡設定\n   - logs/.gitkeep と output/.gitkeep を作成\n   - これにより空ディレクトリもGitで管理可能に\n\n仮想環境が正常に作成され、Git管理も適切に設定されました。\n</info added on 2025-06-17T01:28:43.868Z>",
+            "status": "done"
+          },
+          {
+            "id": 3,
+            "title": "Configure pyproject.toml",
+            "description": "Edit the `pyproject.toml` file to define project metadata and dependencies.",
+            "dependencies": [
+              1
+            ],
+            "details": "Open the `pyproject.toml` file and specify project details such as name, version, description, and dependencies. This file is crucial for managing project configurations and dependencies.\n<info added on 2025-06-17T01:30:42.562Z>\npyproject.toml設定が完了しました。\n\n実行内容：\n1. pyproject.tomlの拡張設定\n   - プロジェクトの詳細な説明を日本語で記載\n   - 著者情報、キーワード、分類子を追加\n   - プロジェクトURLs（GitHub想定）を設定\n   - CLIエントリーポイント（sirabas-scraper）を定義\n\n2. 開発ツール設定\n   - [tool.uv]セクション：開発依存関係（pytest, ruff, mypy等）\n   - [tool.ruff]セクション：コードフォーマッター設定\n   - [tool.mypy]セクション：型チェッカー設定\n   - [tool.pytest.ini_options]：テスト設定\n\n3. ビルドシステム設定\n   - hatchlingを使用したビルドバックエンド\n\n4. src/main.pyの作成\n   - エントリーポイント関数を実装\n   - 基本的なエラーハンドリング\n   - 次のステップを表示する初期実装\n\n5. README.mdの作成\n   - プロジェクトの概要説明\n   - 機能一覧（絵文字付き）\n   - インストール手順\n   - プロジェクト構造図\n   - 開発状況チェックリスト\n\n動作確認：\n- `python src/main.py`で正常に実行され、初期メッセージが表示されることを確認\n\nプロジェクトの設定が完了し、開発の準備が整いました。\n</info added on 2025-06-17T01:30:42.562Z>",
+            "status": "done"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Install Core Dependencies",
+        "description": "Install and configure essential libraries: httpx, beautifulsoup4, pandas, google-api-python-client, and other required packages",
+        "details": "Use uv to install: httpx (async HTTP client), beautifulsoup4 (HTML parsing), pandas (data manipulation), google-api-python-client (Google Sheets API), pyyaml (config files), sqlite3 (built-in), asyncio (built-in). Create requirements specification in pyproject.toml.",
+        "testStrategy": "Import all libraries successfully, verify versions are compatible, test basic functionality of each library",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Identify Core Dependencies and Their Versions",
+            "description": "Compile a list of all core dependencies required for the project, including their specific version numbers.",
+            "dependencies": [],
+            "details": "Review the project's documentation and codebase to determine all necessary libraries and frameworks, noting their required versions to ensure compatibility.",
+            "status": "pending"
+          },
+          {
+            "id": 2,
+            "title": "Install Core Dependencies",
+            "description": "Install each core dependency in the specified order, adhering to the identified versions.",
+            "dependencies": [
+              1
+            ],
+            "details": "Use appropriate package managers or installation methods for each dependency, ensuring that the correct versions are installed to maintain compatibility.",
+            "status": "pending"
+          },
+          {
+            "id": 3,
+            "title": "Configure Installed Dependencies",
+            "description": "Set up configuration files and environment variables for each installed dependency as required.",
+            "dependencies": [
+              2
+            ],
+            "details": "Adjust settings such as database connection strings, API keys, and other necessary configurations to ensure each dependency functions correctly within the project.",
+            "status": "pending"
+          },
+          {
+            "id": 4,
+            "title": "Resolve Compatibility Issues",
+            "description": "Identify and address any compatibility issues among the installed dependencies.",
+            "dependencies": [
+              3
+            ],
+            "details": "Utilize tools and techniques to detect version conflicts or other incompatibilities, and apply solutions such as updating, downgrading, or replacing dependencies to achieve a stable configuration.",
+            "status": "pending"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Create Configuration Management System",
+        "description": "Implement YAML-based configuration system for URLs, API credentials, output settings, and scraping parameters",
+        "details": "Create config.yaml template with sections for: base_urls, google_api_credentials, output_settings, scraping_delays, retry_settings. Implement ConfigManager class to load/validate configuration. Support environment variable overrides for sensitive data.",
+        "testStrategy": "Load configuration successfully, validate required fields, test environment variable substitution",
+        "priority": "medium",
+        "dependencies": [
+          2
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design Configuration Schema",
+            "description": "Define the structure and required fields for the YAML configuration files.",
+            "dependencies": [],
+            "details": "Establish a clear schema outlining all necessary configuration parameters, their data types, and any default values. This schema will serve as the blueprint for the configuration system.",
+            "status": "pending"
+          },
+          {
+            "id": 2,
+            "title": "Implement Configuration Loader",
+            "description": "Develop a mechanism to read and parse YAML configuration files into application settings.",
+            "dependencies": [
+              1
+            ],
+            "details": "Create a loader that reads YAML files, parses their content according to the defined schema, and populates the application's configuration settings accordingly.",
+            "status": "pending"
+          },
+          {
+            "id": 3,
+            "title": "Integrate Environment Variable Support",
+            "description": "Enhance the configuration system to override settings with environment variables.",
+            "dependencies": [
+              2
+            ],
+            "details": "Modify the configuration loader to check for corresponding environment variables and override the YAML file settings when these variables are present, ensuring flexibility across different environments.",
+            "status": "pending"
+          },
+          {
+            "id": 4,
+            "title": "Implement Configuration Validation",
+            "description": "Develop a validation mechanism to ensure configuration data adheres to the defined schema.",
+            "dependencies": [
+              2
+            ],
+            "details": "Create a validation system that checks the loaded configuration against the schema, verifying data types, required fields, and acceptable value ranges to prevent misconfigurations.",
+            "status": "pending"
+          },
+          {
+            "id": 5,
+            "title": "Develop Error Handling and Logging",
+            "description": "Implement robust error handling and logging for configuration loading and validation processes.",
+            "dependencies": [
+              4
+            ],
+            "details": "Ensure that any issues encountered during configuration loading or validation are properly logged and reported, providing clear error messages to facilitate troubleshooting.",
+            "status": "pending"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Implement Basic HTTP Client with Error Handling",
+        "description": "Create async HTTP client wrapper with retry logic, rate limiting, and proper error handling for web scraping",
+        "details": "Create HTTPClient class using httpx.AsyncClient with: retry mechanism (exponential backoff), rate limiting (configurable delays), timeout handling, user-agent rotation, session persistence. Implement proper exception handling for network errors.",
+        "testStrategy": "Test successful requests, verify retry logic on failures, confirm rate limiting works, test timeout handling",
+        "priority": "high",
+        "dependencies": [
+          2
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design the Asynchronous HTTP Client Architecture",
+            "description": "Outline the overall structure and components of the async HTTP client, ensuring it supports features like retry logic, rate limiting, and error handling.",
+            "dependencies": [],
+            "details": "Define the core modules and their interactions, focusing on how asynchronous operations will be managed and how extensibility for additional features will be facilitated.",
+            "status": "pending"
+          },
+          {
+            "id": 2,
+            "title": "Implement Asynchronous Request Handling",
+            "description": "Develop the core functionality to perform HTTP requests asynchronously, ensuring efficient handling of I/O operations.",
+            "dependencies": [
+              1
+            ],
+            "details": "Utilize appropriate libraries or frameworks to manage asynchronous HTTP requests, ensuring the client can handle multiple concurrent requests effectively.",
+            "status": "pending"
+          },
+          {
+            "id": 3,
+            "title": "Develop Retry Mechanism with Exponential Backoff and Jitter",
+            "description": "Implement a retry strategy that includes exponential backoff and random jitter to handle transient failures and avoid the thundering herd problem.",
+            "dependencies": [
+              2
+            ],
+            "details": "Design the retry logic to progressively increase the wait time between retries, incorporating random delays to prevent synchronized retries from overwhelming the server. Reference: [turn0search0]",
+            "status": "pending"
+          },
+          {
+            "id": 4,
+            "title": "Implement Rate Limiting Functionality",
+            "description": "Develop a rate limiting mechanism to control the number of requests sent within a specified time frame, preventing API rate limit violations.",
+            "dependencies": [
+              2
+            ],
+            "details": "Create a system that tracks the number of requests and enforces limits based on predefined thresholds, ensuring compliance with API rate limits. Reference: [turn0search8]",
+            "status": "pending"
+          },
+          {
+            "id": 5,
+            "title": "Integrate Comprehensive Error Handling",
+            "description": "Implement robust error handling to manage various HTTP errors, including status codes like 429 (Too Many Requests) and 500 (Internal Server Error).",
+            "dependencies": [
+              2
+            ],
+            "details": "Develop mechanisms to interpret and respond to different HTTP status codes appropriately, including parsing 'Retry-After' headers and handling network-related exceptions. Reference: [turn0search2]",
+            "status": "pending"
+          },
+          {
+            "id": 6,
+            "title": "Conduct Testing and Performance Evaluation",
+            "description": "Perform thorough testing to ensure the async HTTP client functions correctly under various scenarios and evaluate its performance.",
+            "dependencies": [
+              3,
+              4,
+              5
+            ],
+            "details": "Design and execute test cases that simulate different network conditions, error responses, and load scenarios to validate the client's reliability and efficiency.",
+            "status": "pending"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Develop HTML Parser for Single Page Data Extraction",
+        "description": "Create HTML parsing module to extract syllabus data from individual subject detail pages using BeautifulSoup4",
+        "details": "Create SyllabusParser class with methods to extract 16+ data fields: year, category, code, name, credits, classification, term, instructors, schedule, location, description, evaluation_method, prerequisites, preparation_review, references, syllabus_plan. Handle missing data gracefully.",
+        "testStrategy": "Test parsing with sample HTML pages, verify all 16 fields are extracted correctly, test handling of missing/malformed data",
+        "priority": "high",
+        "dependencies": [
+          4
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Select an HTML Parsing Library",
+            "description": "Choose an appropriate Python library for parsing HTML, considering factors like performance, ease of use, and ability to handle malformed HTML.",
+            "dependencies": [],
+            "details": "Evaluate libraries such as Beautiful Soup, lxml, and html5lib. Beautiful Soup is known for its simplicity and ability to handle poorly structured HTML, making it suitable for beginners. lxml offers high performance and robust parsing capabilities, ideal for large-scale projects. html5lib adheres strictly to HTML5 specifications, ensuring accurate parsing of complex documents. Consider the specific requirements of your project to make an informed choice.",
+            "status": "pending"
+          },
+          {
+            "id": 2,
+            "title": "Understand the HTML Structure of Target Pages",
+            "description": "Analyze the HTML structure of the web pages from which data will be extracted to identify the specific elements and attributes containing the desired data fields.",
+            "dependencies": [
+              1
+            ],
+            "details": "Use browser developer tools to inspect the HTML of target web pages. Identify the tags, classes, IDs, and other attributes that encapsulate the data you need. This understanding will guide the development of your parsing logic and ensure accurate data extraction.",
+            "status": "pending"
+          },
+          {
+            "id": 3,
+            "title": "Implement Data Extraction Logic",
+            "description": "Develop functions to parse the HTML and extract the required data fields, ensuring the code can handle missing or malformed data gracefully.",
+            "dependencies": [
+              2
+            ],
+            "details": "Write Python functions that utilize the chosen parsing library to navigate the HTML structure and extract data. Implement error handling to manage cases where expected elements are missing or contain unexpected data. This may involve setting default values, skipping over missing data, or logging errors for further analysis.",
+            "status": "pending"
+          },
+          {
+            "id": 4,
+            "title": "Test the Parser with Various HTML Samples",
+            "description": "Validate the parser's functionality by testing it against multiple HTML samples, including those with missing or malformed data fields.",
+            "dependencies": [
+              3
+            ],
+            "details": "Create a suite of test cases with diverse HTML samples that reflect real-world scenarios, including well-formed HTML as well as cases with missing tags, attributes, or data. Run the parser against these samples to ensure it extracts data accurately and handles anomalies as expected.",
+            "status": "pending"
+          },
+          {
+            "id": 5,
+            "title": "Optimize and Document the Parser",
+            "description": "Refine the parser for performance and maintainability, and provide comprehensive documentation for future use and modification.",
+            "dependencies": [
+              4
+            ],
+            "details": "Review the parser's code to identify and implement optimizations that enhance performance, such as reducing unnecessary computations or improving data structures. Write clear documentation detailing the parser's functionality, usage instructions, and guidelines for handling potential issues. This documentation will facilitate future maintenance and adaptation of the parser.",
+            "status": "pending"
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Create SQLite Database Schema and Models",
+        "description": "Design and implement SQLite database schema for Course and Subject entities with proper relationships",
+        "details": "Create database schema with Course table (id, department, course_name, url) and Subject table (year, category, code, name, credits, classification, term, instructors, schedule, location, description, evaluation_method, prerequisites, preparation_review, references, syllabus_plan, course_id). Implement DatabaseManager class with CRUD operations.",
+        "testStrategy": "Create database successfully, insert/query test data, verify foreign key relationships, test data integrity",
+        "priority": "medium",
+        "dependencies": [
+          3
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Conduct Requirements Analysis",
+            "description": "Gather and document all functional and non-functional requirements related to the Course and Subject entities.",
+            "dependencies": [],
+            "details": "This involves understanding the attributes, relationships, and constraints for both entities to ensure the database schema meets all business needs.",
+            "status": "pending"
+          },
+          {
+            "id": 2,
+            "title": "Design Entity-Relationship Diagram (ERD)",
+            "description": "Create an ERD to visually represent the Course and Subject entities and their relationships.",
+            "dependencies": [
+              1
+            ],
+            "details": "The ERD should include all relevant attributes, primary keys, foreign keys, and the cardinality of relationships between entities.",
+            "status": "pending"
+          },
+          {
+            "id": 3,
+            "title": "Define Database Schema",
+            "description": "Translate the ERD into a detailed database schema, specifying tables, columns, data types, and constraints.",
+            "dependencies": [
+              2
+            ],
+            "details": "Ensure the schema adheres to normalization principles to minimize redundancy and maintain data integrity.",
+            "status": "pending"
+          },
+          {
+            "id": 4,
+            "title": "Implement and Test Database Models",
+            "description": "Develop the database models based on the defined schema and perform testing to validate functionality and integrity.",
+            "dependencies": [
+              3
+            ],
+            "details": "This includes creating the actual database tables, inserting sample data, and executing test queries to ensure the models operate as expected.",
+            "status": "pending"
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "title": "Implement Department and Course List Scraper",
+        "description": "Create scraper to extract all 24 departments and their courses from the main syllabus index page",
+        "details": "Create DepartmentScraper class to parse https://w.guide.air-u.kyoto-art.ac.jp/syllabus/index.html. Extract department names, course IDs, and construct course URLs. Store course information in SQLite database. Handle pagination if present.",
+        "testStrategy": "Verify all 24 departments are found, course URLs are correctly constructed, data is stored in database",
+        "priority": "high",
+        "dependencies": [
+          5,
+          6
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Analyze the Syllabus Index Page Structure",
+            "description": "Examine the HTML structure of the syllabus index page to identify patterns and elements containing department and course information.",
+            "dependencies": [],
+            "details": "Use browser developer tools to inspect the HTML elements and note the tags, classes, and IDs associated with the desired data.",
+            "status": "pending"
+          },
+          {
+            "id": 2,
+            "title": "Set Up the Development Environment",
+            "description": "Install and configure necessary libraries and tools for web scraping.",
+            "dependencies": [],
+            "details": "Install Python libraries such as BeautifulSoup and Requests. Ensure the environment is ready for development.",
+            "status": "pending"
+          },
+          {
+            "id": 3,
+            "title": "Develop the Web Scraper",
+            "description": "Create a script to fetch and parse the syllabus index page, extracting department and course information.",
+            "dependencies": [
+              1,
+              2
+            ],
+            "details": "Use the Requests library to fetch the HTML content and BeautifulSoup to parse and extract the required data.",
+            "status": "pending"
+          },
+          {
+            "id": 4,
+            "title": "Handle Pagination",
+            "description": "Implement logic to navigate through paginated content to ensure all courses are scraped.",
+            "dependencies": [
+              3
+            ],
+            "details": "Identify pagination controls and develop a method to iterate through all pages, collecting data from each.",
+            "status": "pending"
+          },
+          {
+            "id": 5,
+            "title": "Implement Error Handling",
+            "description": "Add robust error handling to manage potential issues during the scraping process.",
+            "dependencies": [
+              3,
+              4
+            ],
+            "details": "Handle exceptions such as network errors, missing elements, and unexpected HTML structures gracefully.",
+            "status": "pending"
+          },
+          {
+            "id": 6,
+            "title": "Store Extracted Data in a Database",
+            "description": "Design and implement a database schema to store the extracted department and course information.",
+            "dependencies": [
+              3,
+              4,
+              5
+            ],
+            "details": "Choose an appropriate database system, create tables, and develop functions to insert the scraped data.",
+            "status": "pending"
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "title": "Develop Recursive Course Subject List Scraper",
+        "description": "Implement recursive scraper to traverse course pages and extract all subject URLs for each course",
+        "details": "Create CourseScraper class to process course.html pages with pattern: https://w.guide.air-u.kyoto-art.ac.jp/syllabus/course.html?cid={course_id}. Extract subject codes and construct detail URLs. Handle nested categories and subcourses recursively. Store subject metadata in database.",
+        "testStrategy": "Test recursive traversal, verify all subject URLs are collected, confirm no infinite loops, validate URL construction",
+        "priority": "high",
+        "dependencies": [
+          7
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Set Up Development Environment",
+            "description": "Prepare the necessary tools and libraries for developing the recursive scraper.",
+            "dependencies": [],
+            "details": "Install Python and required libraries such as `requests` and `BeautifulSoup`. Ensure the development environment is configured correctly.",
+            "status": "pending"
+          },
+          {
+            "id": 2,
+            "title": "Define Base URL and Termination Conditions",
+            "description": "Establish the starting point for the scraper and set conditions to prevent infinite recursion.",
+            "dependencies": [
+              1
+            ],
+            "details": "Identify the root URL of the course pages and implement termination conditions, such as maximum recursion depth or domain restrictions, to avoid infinite loops.",
+            "status": "pending"
+          },
+          {
+            "id": 3,
+            "title": "Implement URL Extraction Function",
+            "description": "Develop a function to extract all subject URLs from a given course page.",
+            "dependencies": [
+              2
+            ],
+            "details": "Use `BeautifulSoup` to parse HTML content and extract URLs from anchor tags. Ensure the function handles relative and absolute URLs appropriately.",
+            "status": "pending"
+          },
+          {
+            "id": 4,
+            "title": "Implement Recursive Scraping Function",
+            "description": "Create a recursive function that traverses course pages and extracts subject URLs.",
+            "dependencies": [
+              3
+            ],
+            "details": "Develop a function that calls itself to navigate through course pages, extracting and storing subject URLs while adhering to termination conditions.",
+            "status": "pending"
+          },
+          {
+            "id": 5,
+            "title": "Manage Data Storage",
+            "description": "Set up a system to store extracted subject URLs efficiently.",
+            "dependencies": [
+              4
+            ],
+            "details": "Choose an appropriate data structure, such as a set or database, to store unique subject URLs and prevent duplicates.",
+            "status": "pending"
+          },
+          {
+            "id": 6,
+            "title": "Handle Potential Pitfalls",
+            "description": "Address common issues in recursive algorithms to ensure robustness.",
+            "dependencies": [
+              4
+            ],
+            "details": "Implement error handling for network requests, manage stack depth to prevent overflow, and consider using memoization to avoid redundant computations.",
+            "status": "pending"
+          },
+          {
+            "id": 7,
+            "title": "Perform Complexity Analysis",
+            "description": "Analyze the time and space complexity of the recursive scraper.",
+            "dependencies": [
+              6
+            ],
+            "details": "Evaluate the efficiency of the scraper by analyzing its recursive structure and potential for deep nesting, considering factors like the number of recursive calls and memory usage.",
+            "status": "pending"
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "title": "Create Subject Detail Scraper with Async Processing",
+        "description": "Implement async scraper to extract detailed information from individual subject pages efficiently",
+        "details": "Create SubjectScraper class using async/await to process detail.html pages: https://w.guide.air-u.kyoto-art.ac.jp/syllabus/detail.html?page=detail&code={subject_code}&cid={course_id}. Use semaphore to limit concurrent requests. Extract all 16+ data fields and store in database.",
+        "testStrategy": "Test async processing with multiple subjects, verify data extraction accuracy, confirm rate limiting works",
+        "priority": "high",
+        "dependencies": [
+          8
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Analyze Target Website Structure",
+            "description": "Examine the HTML and network requests of the target website to identify patterns and data sources.",
+            "dependencies": [],
+            "details": "Use browser developer tools to inspect the site's HTML structure and network activity. Look for APIs or structured data formats like JSON that can simplify data extraction.",
+            "status": "pending"
+          },
+          {
+            "id": 2,
+            "title": "Set Up Asynchronous Environment",
+            "description": "Configure the development environment with necessary asynchronous libraries for web scraping.",
+            "dependencies": [],
+            "details": "Install and import Python libraries such as `aiohttp` for asynchronous HTTP requests and `asyncio` for managing asynchronous operations.",
+            "status": "pending"
+          },
+          {
+            "id": 3,
+            "title": "Implement Asynchronous Request Handling",
+            "description": "Develop functions to perform asynchronous HTTP requests to fetch web pages.",
+            "dependencies": [
+              2
+            ],
+            "details": "Create asynchronous functions using `aiohttp` to send HTTP GET requests and retrieve responses concurrently.",
+            "status": "pending"
+          },
+          {
+            "id": 4,
+            "title": "Parse HTML Content",
+            "description": "Extract relevant data from the fetched HTML content.",
+            "dependencies": [
+              3
+            ],
+            "details": "Utilize libraries like `BeautifulSoup` to parse HTML and extract desired information from the web pages.",
+            "status": "pending"
+          },
+          {
+            "id": 5,
+            "title": "Implement Rate Limiting and Concurrency Control",
+            "description": "Ensure the scraper respects server limitations by controlling request rates and concurrency.",
+            "dependencies": [
+              3
+            ],
+            "details": "Use `asyncio.Semaphore` to limit the number of concurrent requests and implement delays between requests to prevent overwhelming the server.",
+            "status": "pending"
+          },
+          {
+            "id": 6,
+            "title": "Handle Errors and Exceptions",
+            "description": "Implement robust error handling to manage potential issues during scraping.",
+            "dependencies": [
+              3,
+              4
+            ],
+            "details": "Incorporate try-except blocks to catch exceptions such as network errors or invalid responses, and implement retry logic as needed.",
+            "status": "pending"
+          },
+          {
+            "id": 7,
+            "title": "Store Extracted Data",
+            "description": "Save the extracted data in a structured format for further analysis.",
+            "dependencies": [
+              4
+            ],
+            "details": "Choose an appropriate storage format like CSV, JSON, or a database, and implement functions to write the extracted data accordingly.",
+            "status": "pending"
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "title": "Implement Progress Tracking and Logging System",
+        "description": "Create comprehensive logging and progress tracking system with real-time feedback and error reporting",
+        "details": "Create ProgressTracker class with: progress bars using rich/tqdm, separate loggers for success/error events, file-based logging with rotation, real-time statistics (pages processed, errors, success rate). Implement resume capability by tracking processed URLs.",
+        "testStrategy": "Verify progress bars display correctly, logs are written to files, statistics are accurate, resume functionality works",
+        "priority": "medium",
+        "dependencies": [
+          9
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design System Architecture",
+            "description": "Develop a comprehensive architecture for the progress tracking and logging system, incorporating real-time feedback and error reporting components.",
+            "dependencies": [],
+            "details": "Outline the system's structure, including data flow, component interactions, and integration points for real-time monitoring and error tracking tools.",
+            "status": "pending"
+          },
+          {
+            "id": 2,
+            "title": "Implement Real-Time Monitoring Tools",
+            "description": "Integrate real-time monitoring tools to track system performance and user interactions.",
+            "dependencies": [
+              1
+            ],
+            "details": "Select and configure tools such as Prometheus and Grafana to monitor metrics like response times, resource utilization, and user activity, enabling immediate detection of performance issues.",
+            "status": "pending"
+          },
+          {
+            "id": 3,
+            "title": "Set Up Centralized Logging Mechanism",
+            "description": "Establish a centralized logging system to collect and manage logs from various components.",
+            "dependencies": [
+              1
+            ],
+            "details": "Implement a solution like the ELK Stack (Elasticsearch, Logstash, Kibana) to aggregate logs, allowing for efficient filtering, analysis, and visualization of log data in real-time.",
+            "status": "pending"
+          },
+          {
+            "id": 4,
+            "title": "Integrate Real-Time Error Tracking",
+            "description": "Incorporate real-time error tracking to capture and report system errors promptly.",
+            "dependencies": [
+              2,
+              3
+            ],
+            "details": "Utilize tools such as Sentry or Rollbar to detect exceptions and errors across the system, providing detailed context and stack traces for efficient debugging.",
+            "status": "pending"
+          },
+          {
+            "id": 5,
+            "title": "Develop User Feedback Mechanisms",
+            "description": "Create channels for collecting user feedback and bug reports to enhance system reliability.",
+            "dependencies": [
+              1
+            ],
+            "details": "Implement in-app prompts or surveys to gather user insights, and integrate feedback tools like Zigpoll to collect actionable data for continuous improvement.",
+            "status": "pending"
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "title": "Develop CSV Export Functionality",
+        "description": "Create CSV export module to output scraped data in structured format with proper encoding and formatting",
+        "details": "Create CSVExporter class using pandas DataFrame. Export data with proper UTF-8 encoding, handle Japanese characters correctly. Include all extracted fields with clear column headers. Implement data deduplication and validation before export.",
+        "testStrategy": "Generate CSV files, verify UTF-8 encoding, test with Japanese characters, confirm data completeness and accuracy",
+        "priority": "high",
+        "dependencies": [
+          10
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Prepare Data for Export",
+            "description": "Ensure the scraped data is structured appropriately for CSV export.",
+            "dependencies": [],
+            "details": "Organize the scraped data into a list of dictionaries or a Pandas DataFrame, ensuring all necessary fields are included and data types are consistent.",
+            "status": "pending"
+          },
+          {
+            "id": 2,
+            "title": "Handle Special Characters and Encoding",
+            "description": "Address potential issues with special characters and encoding in the data.",
+            "dependencies": [
+              1
+            ],
+            "details": "Identify and escape special characters such as commas and quotes in the data. Specify UTF-8 encoding to support a wide range of characters and ensure compatibility across different systems. ([companysconnects.com](https://www.companysconnects.com/post/common-pitfalls-in-csv-and-how-to-avoid-them?utm_source=openai))",
+            "status": "pending"
+          },
+          {
+            "id": 3,
+            "title": "Implement CSV Export Functionality",
+            "description": "Develop the functionality to export the prepared data to a CSV file.",
+            "dependencies": [
+              2
+            ],
+            "details": "Use Python's built-in 'csv' module or Pandas' 'to_csv()' method to write the data to a CSV file. Ensure proper formatting by specifying parameters such as delimiter, quoting, and line endings. ([docs.python.org](https://docs.python.org/3.11//library/csv.html?utm_source=openai))",
+            "status": "pending"
+          },
+          {
+            "id": 4,
+            "title": "Test and Validate the Exported CSV",
+            "description": "Verify the integrity and correctness of the exported CSV file.",
+            "dependencies": [
+              3
+            ],
+            "details": "Open the exported CSV file in various applications to ensure proper formatting and encoding. Check for any data corruption or formatting issues, and adjust the export functionality as needed to address any problems.",
+            "status": "pending"
+          }
+        ]
+      },
+      {
+        "id": 12,
+        "title": "Integrate Google Sheets API for Cloud Export",
+        "description": "Implement Google Sheets API integration for direct cloud-based data export with authentication",
+        "details": "Create GoogleSheetsExporter class using google-api-python-client. Implement OAuth2 authentication flow, create/update spreadsheets, handle API rate limits. Format data appropriately for spreadsheet display with proper headers and data types.",
+        "testStrategy": "Test authentication flow, verify spreadsheet creation/update, confirm data formatting, test API error handling",
+        "priority": "medium",
+        "dependencies": [
+          11
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Set Up Google Cloud Project",
+            "description": "Create a new project in Google Cloud Console to manage API credentials and settings.",
+            "dependencies": [],
+            "details": "Navigate to the Google Cloud Console, create a new project, and note the project ID for future reference.",
+            "status": "pending"
+          },
+          {
+            "id": 2,
+            "title": "Enable Google Sheets and Drive APIs",
+            "description": "Activate the necessary APIs to allow interaction with Google Sheets and Drive services.",
+            "dependencies": [
+              1
+            ],
+            "details": "Within the Google Cloud Console, go to 'APIs & Services' > 'Library', search for 'Google Sheets API' and 'Google Drive API', and enable both.",
+            "status": "pending"
+          },
+          {
+            "id": 3,
+            "title": "Configure OAuth Consent Screen",
+            "description": "Set up the consent screen to inform users about the data access permissions requested by the application.",
+            "dependencies": [
+              2
+            ],
+            "details": "In the Google Cloud Console, navigate to 'APIs & Services' > 'OAuth consent screen', select 'External' user type, and provide necessary details such as app name, support email, and authorized domains.",
+            "status": "pending"
+          },
+          {
+            "id": 4,
+            "title": "Create OAuth 2.0 Credentials",
+            "description": "Generate OAuth 2.0 client credentials to authenticate and authorize API requests.",
+            "dependencies": [
+              3
+            ],
+            "details": "Go to 'APIs & Services' > 'Credentials', click 'Create Credentials' > 'OAuth client ID', select 'Web application', and configure authorized redirect URIs.",
+            "status": "pending"
+          },
+          {
+            "id": 5,
+            "title": "Implement OAuth 2.0 Authorization Flow",
+            "description": "Develop the authorization flow to obtain access tokens for API requests.",
+            "dependencies": [
+              4
+            ],
+            "details": "Integrate the OAuth 2.0 flow in your application to redirect users to Google's authorization endpoint, handle the authorization code, and exchange it for access and refresh tokens.",
+            "status": "pending"
+          },
+          {
+            "id": 6,
+            "title": "Export Data to Cloud Storage",
+            "description": "Utilize the Google Sheets API to read data and export it directly to cloud storage.",
+            "dependencies": [
+              5
+            ],
+            "details": "Use the access token to authenticate API requests, read data from Google Sheets, and implement functionality to export the data to the desired cloud storage service.",
+            "status": "pending"
+          }
+        ]
+      },
+      {
+        "id": 13,
+        "title": "Create Main Orchestrator and CLI Interface",
+        "description": "Develop main application orchestrator with command-line interface for easy execution and configuration",
+        "details": "Create MainScraper orchestrator class coordinating all components. Implement CLI using argparse with options for: output format (CSV/Sheets), config file path, resume mode, verbose logging. Add command validation and help documentation.",
+        "testStrategy": "Test CLI argument parsing, verify orchestrator coordinates all components correctly, test different execution modes",
+        "priority": "high",
+        "dependencies": [
+          12
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design the Application Orchestrator Architecture",
+            "description": "Develop a comprehensive architecture for the main application orchestrator, ensuring seamless integration of various components and efficient coordination of tasks.",
+            "dependencies": [],
+            "details": "This involves defining the core modules, data flow, and interaction patterns within the orchestrator. Consideration should be given to scalability, fault tolerance, and maintainability.",
+            "status": "pending"
+          },
+          {
+            "id": 2,
+            "title": "Implement Core Orchestrator Functionality",
+            "description": "Develop the core functionalities of the orchestrator, including task scheduling, resource management, and inter-component communication.",
+            "dependencies": [
+              1
+            ],
+            "details": "This step focuses on coding the essential features that enable the orchestrator to manage and execute tasks effectively. Ensure that the implementation adheres to the designed architecture and meets performance requirements.",
+            "status": "pending"
+          },
+          {
+            "id": 3,
+            "title": "Design the Command-Line Interface (CLI) Structure",
+            "description": "Create a user-friendly CLI structure that allows users to interact with the application orchestrator efficiently.",
+            "dependencies": [
+              1
+            ],
+            "details": "Develop a consistent command syntax, such as a 'verb-noun' structure (e.g., 'deploy service'), and organize commands into logical groups. Implement comprehensive help documentation accessible via commands like '--help' or '-h'.",
+            "status": "pending"
+          },
+          {
+            "id": 4,
+            "title": "Implement CLI Commands and Options",
+            "description": "Develop the CLI commands and their associated options, ensuring they provide clear and concise functionality for user interactions.",
+            "dependencies": [
+              3
+            ],
+            "details": "Code the commands following the designed structure, incorporating features like command completion, error handling, and informative feedback. Ensure that the CLI is intuitive and aligns with best practices for user-friendly interfaces.",
+            "status": "pending"
+          },
+          {
+            "id": 5,
+            "title": "Integrate CLI with the Application Orchestrator",
+            "description": "Connect the implemented CLI with the core orchestrator functionalities to enable seamless user interactions.",
+            "dependencies": [
+              2,
+              4
+            ],
+            "details": "Ensure that the CLI effectively communicates with the orchestrator, triggering appropriate actions and providing users with real-time feedback. Test the integration thoroughly to confirm that the CLI and orchestrator work harmoniously.",
+            "status": "pending"
+          }
+        ]
+      },
+      {
+        "id": 14,
+        "title": "Implement Data Validation and Quality Assurance",
+        "description": "Add comprehensive data validation, duplicate detection, and quality assurance checks for scraped data",
+        "details": "Create DataValidator class with: duplicate detection by subject code, data completeness checks, format validation (credits as numbers, dates properly formatted), consistency checks across related records. Generate validation reports.",
+        "testStrategy": "Test duplicate detection, verify validation rules work correctly, confirm data quality reports are accurate",
+        "priority": "medium",
+        "dependencies": [
+          13
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Conduct Data Profiling",
+            "description": "Analyze the structure, content, and quality of the scraped data to identify patterns, anomalies, and potential issues.",
+            "dependencies": [],
+            "details": "Utilize data profiling techniques to examine data types, formats, distributions, and relationships within the dataset. This process helps in detecting missing values, outliers, duplicates, and inconsistencies, providing a foundation for subsequent data validation and cleansing steps.",
+            "status": "pending"
+          },
+          {
+            "id": 2,
+            "title": "Implement Data Validation Rules",
+            "description": "Establish and apply validation rules to ensure data accuracy, completeness, and consistency.",
+            "dependencies": [
+              1
+            ],
+            "details": "Define validation rules such as range checks, format checks, and existence checks to verify that data values fall within acceptable ranges, conform to required patterns, and that mandatory fields are populated. Implement these rules programmatically to automate the validation process.",
+            "status": "pending"
+          },
+          {
+            "id": 3,
+            "title": "Detect and Handle Duplicate Records",
+            "description": "Identify and resolve duplicate entries within the dataset to maintain data uniqueness.",
+            "dependencies": [
+              1
+            ],
+            "details": "Utilize deduplication techniques, including algorithmic matching and fuzzy logic, to detect duplicate records. Apply rule-based systems or machine learning models to improve duplicate detection accuracy. Once identified, decide on appropriate actions such as merging, removing, or flagging duplicates based on business requirements.",
+            "status": "pending"
+          },
+          {
+            "id": 4,
+            "title": "Perform Data Cleansing",
+            "description": "Correct or remove identified data quality issues to enhance data integrity.",
+            "dependencies": [
+              2,
+              3
+            ],
+            "details": "Address issues such as missing values, inconsistencies, and inaccuracies by standardizing formats, normalizing data, and imputing or removing erroneous entries. Ensure that data cleansing actions do not introduce new errors and that the data remains representative of real-world facts.",
+            "status": "pending"
+          },
+          {
+            "id": 5,
+            "title": "Establish Data Quality Metrics and Monitoring",
+            "description": "Define metrics to measure data quality and set up continuous monitoring mechanisms.",
+            "dependencies": [
+              4
+            ],
+            "details": "Develop metrics such as accuracy rate, completeness rate, consistency rate, uniqueness rate, and timeliness rate to quantitatively assess data quality. Implement automated monitoring tools to track these metrics over time, enabling the detection of quality degradation and facilitating timely corrective actions.",
+            "status": "pending"
+          },
+          {
+            "id": 6,
+            "title": "Implement Data Governance Framework",
+            "description": "Establish policies, standards, and responsibilities to maintain and improve data quality.",
+            "dependencies": [
+              5
+            ],
+            "details": "Define data governance policies that outline data quality standards, roles, and responsibilities. Implement frameworks such as data stewardship, data ownership, and data lineage to ensure accountability and control over data quality throughout its lifecycle. Regularly review and update governance practices to adapt to evolving data requirements.",
+            "status": "pending"
+          }
+        ]
+      },
+      {
+        "id": 15,
+        "title": "Add Resume Capability and Error Recovery",
+        "description": "Implement robust resume functionality and error recovery mechanisms for interrupted scraping sessions",
+        "details": "Enhance system with: checkpoint saving (processed URLs, current state), resume from last checkpoint, failed URL retry queue, graceful shutdown handling, recovery from partial data states. Store resume state in SQLite database.",
+        "testStrategy": "Test interruption and resume scenarios, verify no data loss during recovery, confirm failed URLs are retried appropriately",
+        "priority": "medium",
+        "dependencies": [
+          14
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design State Management System",
+            "description": "Develop a system to track and store the progress of the scraping process, enabling resumption from the last successful point after an interruption.",
+            "dependencies": [],
+            "details": "Implement a mechanism to save the state of the scraper at regular intervals or after processing each item. This can be achieved by storing unique identifiers (e.g., URLs, IDs) of successfully scraped items in a file or database. Before scraping an item, check if its identifier exists in the saved progress to avoid duplication. Ensure the system can handle interruptions gracefully and save its progress before terminating.",
+            "status": "pending"
+          },
+          {
+            "id": 2,
+            "title": "Implement Error Handling Mechanisms",
+            "description": "Establish robust error handling to manage exceptions and ensure the scraper continues operating smoothly despite encountering errors.",
+            "dependencies": [],
+            "details": "Utilize try-except blocks to catch and handle exceptions such as HTTP errors, connection issues, and timeouts. Implement logging to record errors for future analysis and debugging. Ensure that the scraper can handle various edge cases, such as corrupted progress files or changes in website structure.",
+            "status": "pending"
+          },
+          {
+            "id": 3,
+            "title": "Develop Retry Strategies",
+            "description": "Create mechanisms to retry failed requests, enhancing the scraper's resilience to transient errors.",
+            "dependencies": [
+              2
+            ],
+            "details": "Implement retry mechanisms with exponential backoff to handle temporary network or server issues. This involves waiting an increasing amount of time between each retry attempt to reduce the load on the target server and increase the likelihood of successful requests.",
+            "status": "pending"
+          },
+          {
+            "id": 4,
+            "title": "Set Up Logging and Monitoring",
+            "description": "Establish logging and monitoring systems to track the scraper's performance and identify issues promptly.",
+            "dependencies": [
+              2
+            ],
+            "details": "Implement logging mechanisms to track data transformations and anomalies. Maintain detailed logs of scraping activities, including error messages and response codes. Regularly review logs to identify patterns in data issues and address root causes proactively. Set up alerts or notifications to inform relevant parties of critical errors or script failures.",
+            "status": "pending"
+          },
+          {
+            "id": 5,
+            "title": "Implement Graceful Degradation",
+            "description": "Ensure the scraper can continue operating and collecting data even when encountering errors or partial failures.",
+            "dependencies": [
+              2
+            ],
+            "details": "Implement graceful degradation by logging errors rather than stopping the entire scraping process. This allows the scraper to continue fetching data from other sources even if an error occurs. Use try-except blocks to catch exceptions and handle them appropriately, such as skipping the problematic URL or marking it for later inspection.",
+            "status": "pending"
+          },
+          {
+            "id": 6,
+            "title": "Automate Error Recovery Mechanisms",
+            "description": "Develop automated systems to recover from errors and resume the scraping process without manual intervention.",
+            "dependencies": [
+              1,
+              2,
+              3
+            ],
+            "details": "Implement automated error handling to reduce downtime during data extraction processes. Incorporate try-except blocks around scraping logic to handle exceptions gracefully. Engage retry logic with exponential backoff for temporary issues like server errors. Establish a systematic recovery plan by checkpointing the state (e.g., which pages have been scraped) to allow resumption from the last successful operation in case of a crash.",
+            "status": "pending"
+          },
+          {
+            "id": 7,
+            "title": "Test and Validate the System",
+            "description": "Conduct thorough testing to ensure the resume functionality and error recovery mechanisms work as intended.",
+            "dependencies": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "details": "Implement automated testing at every stage of the data acquisition pipeline to catch discrepancies early. Incorporate unit tests for individual components and integration tests for overall workflow validation. Utilize frameworks like Pytest to increase the reliability of the scripts, allowing for rapid identification of errors that might corrupt data integrity. Regularly review logs to identify patterns in data issues and address root causes proactively.",
+            "status": "pending"
+          }
+        ]
+      }
+    ],
+    "metadata": {
+      "created": "2025-06-17T01:19:14.710Z",
+      "updated": "2025-06-17T01:30:59.509Z",
+      "description": "Tasks for master context"
+    }
+  }
+}
