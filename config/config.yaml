@@ -1,0 +1,68 @@
+# Sirabas Scraping Configuration
+# 京都芸術大学通信教育部のシラバス情報を自動収集するWebスクレイピングツール
+
+# スクレイピング設定
+scraping:
+  # ベースURL
+  base_url: "https://example.com/syllabus"  # 実際のURLに置き換えてください
+  
+  # リクエスト設定
+  request:
+    timeout: 30  # タイムアウト（秒）
+    max_retries: 3  # 最大リトライ回数
+    retry_delay: 5  # リトライ間隔（秒）
+    user_agent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
+    
+  # 並行処理設定
+  concurrency:
+    max_workers: 5  # 最大並行ワーカー数
+    rate_limit: 1  # リクエスト間隔（秒）
+
+# データベース設定
+database:
+  # SQLite設定
+  sqlite:
+    path: "data/sirabas.db"
+    echo: false  # SQLログ出力
+
+# エクスポート設定
+export:
+  # CSV設定
+  csv:
+    output_dir: "output/csv"
+    encoding: "utf-8"
+    include_header: true
+    
+  # Google Sheets設定
+  google_sheets:
+    enabled: false  # Google Sheetsへのエクスポートを有効化
+    spreadsheet_id: ""  # Google SheetsのID（環境変数で上書き可能）
+    sheet_name: "シラバス一覧"
+    batch_size: 100  # 一度に書き込む行数
+
+# ログ設定
+logging:
+  level: "INFO"  # ログレベル: DEBUG, INFO, WARNING, ERROR, CRITICAL
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file:
+    enabled: true
+    path: "logs/sirabas_scraping.log"
+    max_bytes: 10485760  # 10MB
+    backup_count: 5
+
+# アプリケーション設定
+app:
+  # データ保存設定
+  data:
+    raw_data_dir: "data/raw"  # 生データ保存ディレクトリ
+    processed_data_dir: "data/processed"  # 処理済みデータ保存ディレクトリ
+    
+  # キャッシュ設定
+  cache:
+    enabled: true
+    ttl: 3600  # キャッシュ有効期限（秒）
+    
+  # デバッグ設定
+  debug:
+    save_html: false  # HTMLファイルを保存するか
+    verbose: false  # 詳細ログ出力 

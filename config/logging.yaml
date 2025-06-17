@@ -1,0 +1,85 @@
+# Logging Configuration
+version: 1
+disable_existing_loggers: false
+
+# フォーマッター設定
+formatters:
+  default:
+    format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    datefmt: '%Y-%m-%d %H:%M:%S'
+  
+  detailed:
+    format: '%(asctime)s - %(name)s - %(levelname)s - %(filename)s:%(lineno)d - %(funcName)s() - %(message)s'
+    datefmt: '%Y-%m-%d %H:%M:%S'
+  
+  simple:
+    format: '%(levelname)s - %(message)s'
+
+# ハンドラー設定
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: INFO
+    formatter: default
+    stream: ext://sys.stdout
+  
+  file:
+    class: logging.handlers.RotatingFileHandler
+    level: DEBUG
+    formatter: detailed
+    filename: logs/sirabas_scraping.log
+    maxBytes: 10485760  # 10MB
+    backupCount: 5
+    encoding: utf-8
+  
+  error_file:
+    class: logging.handlers.RotatingFileHandler
+    level: ERROR
+    formatter: detailed
+    filename: logs/errors.log
+    maxBytes: 10485760  # 10MB
+    backupCount: 3
+    encoding: utf-8
+
+# ロガー設定
+loggers:
+  # アプリケーションロガー
+  sirabas_scraping:
+    level: DEBUG
+    handlers: [console, file]
+    propagate: false
+  
+  # スクレイパーロガー
+  sirabas_scraping.scrapers:
+    level: DEBUG
+    handlers: [console, file]
+    propagate: false
+  
+  # パーサーロガー
+  sirabas_scraping.parsers:
+    level: DEBUG
+    handlers: [console, file]
+    propagate: false
+  
+  # エクスポーターロガー
+  sirabas_scraping.exporters:
+    level: DEBUG
+    handlers: [console, file]
+    propagate: false
+  
+  # HTTPクライアントロガー
+  httpx:
+    level: WARNING
+    handlers: [console, file]
+    propagate: false
+  
+  # Google APIロガー
+  googleapiclient:
+    level: WARNING
+    handlers: [console, file]
+    propagate: false
+
+# ルートロガー設定
+root:
+  level: INFO
+  handlers: [console, file, error_file] 

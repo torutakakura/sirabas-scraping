@@ -4,7 +4,13 @@ version = "0.1.0"
 description = "京都芸術大学通信教育部のシラバス情報を自動収集するWebスクレイピングツール"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "beautifulsoup4==4.12.3",
+    "google-api-python-client==2.139.0",
+    "httpx==0.28.1",
+    "pandas==2.2.2",
+    "pyyaml==6.0.2",
+]
 
 authors = [
     { name = "Your Name", email = "your.email@example.com" }
@@ -75,3 +81,6 @@ pythonpath = ["src"]
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
