@@ -1,0 +1,133 @@
+{
+	"meta": {
+		"generatedAt": "2025-06-17T01:20:01.823Z",
+		"tasksAnalyzed": 15,
+		"totalTasks": 15,
+		"analysisCount": 15,
+		"thresholdScore": 5,
+		"projectName": "Taskmaster",
+		"usedResearch": true
+	},
+	"complexityAnalysis": [
+		{
+			"taskId": 1,
+			"taskTitle": "Initialize Project Structure with uv Package Manager",
+			"complexityScore": 3,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Break down the steps to set up the project structure using uv, including directory creation, uv initialization, and configuration file setup.",
+			"reasoning": "Setting up a project structure with uv involves multiple steps such as creating directories, initializing the project, and configuring files. While uv simplifies some processes, each step requires attention to detail to ensure proper setup."
+		},
+		{
+			"taskId": 2,
+			"taskTitle": "Install Core Dependencies",
+			"complexityScore": 4,
+			"recommendedSubtasks": 4,
+			"expansionPrompt": "Detail the process of installing and configuring each core dependency, including handling potential compatibility issues.",
+			"reasoning": "Installing multiple core dependencies requires ensuring compatibility among them and proper configuration. Each library may have specific installation steps or configurations, making the task moderately complex."
+		},
+		{
+			"taskId": 3,
+			"taskTitle": "Create Configuration Management System",
+			"complexityScore": 5,
+			"recommendedSubtasks": 5,
+			"expansionPrompt": "Outline the steps to design and implement a YAML-based configuration system, including validation and environment variable support.",
+			"reasoning": "Developing a configuration management system involves designing a schema, implementing loading and validation mechanisms, and supporting environment variable overrides. This requires careful planning and implementation."
+		},
+		{
+			"taskId": 4,
+			"taskTitle": "Implement Basic HTTP Client with Error Handling",
+			"complexityScore": 6,
+			"recommendedSubtasks": 6,
+			"expansionPrompt": "Break down the development of an async HTTP client with features like retry logic, rate limiting, and error handling.",
+			"reasoning": "Creating an HTTP client with robust error handling involves implementing asynchronous requests, retry mechanisms, rate limiting, and proper exception handling. Each feature adds to the complexity of the task."
+		},
+		{
+			"taskId": 5,
+			"taskTitle": "Develop HTML Parser for Single Page Data Extraction",
+			"complexityScore": 5,
+			"recommendedSubtasks": 5,
+			"expansionPrompt": "Detail the steps to create an HTML parser that extracts multiple data fields from a page, handling missing data gracefully.",
+			"reasoning": "Developing an HTML parser requires understanding the page structure, extracting multiple data fields, and handling cases where data may be missing or malformed. This requires careful parsing logic."
+		},
+		{
+			"taskId": 6,
+			"taskTitle": "Create SQLite Database Schema and Models",
+			"complexityScore": 4,
+			"recommendedSubtasks": 4,
+			"expansionPrompt": "Outline the process of designing and implementing the database schema and models for Course and Subject entities.",
+			"reasoning": "Designing a database schema and implementing models involves defining tables, relationships, and ensuring data integrity. While straightforward, it requires attention to detail to avoid future issues."
+		},
+		{
+			"taskId": 7,
+			"taskTitle": "Implement Department and Course List Scraper",
+			"complexityScore": 6,
+			"recommendedSubtasks": 6,
+			"expansionPrompt": "Break down the development of a scraper to extract department and course information from the syllabus index page.",
+			"reasoning": "Creating a scraper to extract department and course information involves parsing complex HTML structures, handling pagination, and storing data in the database. This requires robust parsing and error handling."
+		},
+		{
+			"taskId": 8,
+			"taskTitle": "Develop Recursive Course Subject List Scraper",
+			"complexityScore": 7,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Detail the steps to implement a recursive scraper that traverses course pages to extract all subject URLs.",
+			"reasoning": "Implementing a recursive scraper involves handling nested structures, ensuring termination conditions to avoid infinite loops, and managing data storage. This adds complexity due to the recursive nature and potential for deep nesting."
+		},
+		{
+			"taskId": 9,
+			"taskTitle": "Create Subject Detail Scraper with Async Processing",
+			"complexityScore": 7,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Outline the development of an async scraper to efficiently extract detailed information from individual subject pages.",
+			"reasoning": "Developing an asynchronous scraper for detailed subject information requires managing concurrent requests, handling rate limiting, and ensuring data accuracy. The asynchronous nature adds complexity to the task."
+		},
+		{
+			"taskId": 10,
+			"taskTitle": "Implement Progress Tracking and Logging System",
+			"complexityScore": 5,
+			"recommendedSubtasks": 5,
+			"expansionPrompt": "Break down the creation of a system for progress tracking and logging, including real-time feedback and error reporting.",
+			"reasoning": "Creating a progress tracking and logging system involves implementing real-time feedback mechanisms, error reporting, and log management. This requires integrating various components to provide comprehensive monitoring."
+		},
+		{
+			"taskId": 11,
+			"taskTitle": "Develop CSV Export Functionality",
+			"complexityScore": 4,
+			"recommendedSubtasks": 4,
+			"expansionPrompt": "Detail the steps to implement functionality for exporting scraped data to CSV with proper encoding and formatting.",
+			"reasoning": "Implementing CSV export functionality involves formatting data correctly, handling encoding issues, and ensuring all fields are included. While straightforward, attention to detail is necessary to avoid data issues."
+		},
+		{
+			"taskId": 12,
+			"taskTitle": "Integrate Google Sheets API for Cloud Export",
+			"complexityScore": 6,
+			"recommendedSubtasks": 6,
+			"expansionPrompt": "Outline the process of integrating the Google Sheets API to export data directly to the cloud, including authentication.",
+			"reasoning": "Integrating the Google Sheets API requires handling authentication, managing API requests, and formatting data appropriately for cloud storage. This adds complexity due to external API interactions and security considerations."
+		},
+		{
+			"taskId": 13,
+			"taskTitle": "Create Main Orchestrator and CLI Interface",
+			"complexityScore": 5,
+			"recommendedSubtasks": 5,
+			"expansionPrompt": "Break down the development of the main application orchestrator and command-line interface for user interaction.",
+			"reasoning": "Developing the main orchestrator and CLI involves coordinating various components, handling user inputs, and providing a seamless interface. This requires integrating multiple modules and ensuring smooth operation."
+		},
+		{
+			"taskId": 14,
+			"taskTitle": "Implement Data Validation and Quality Assurance",
+			"complexityScore": 6,
+			"recommendedSubtasks": 6,
+			"expansionPrompt": "Detail the steps to add comprehensive data validation, duplicate detection, and quality assurance checks for scraped data.",
+			"reasoning": "Implementing data validation and quality assurance involves checking for duplicates, ensuring data completeness, and validating formats. This requires developing robust validation rules and handling exceptions."
+		},
+		{
+			"taskId": 15,
+			"taskTitle": "Add Resume Capability and Error Recovery",
+			"complexityScore": 7,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Outline the process of implementing resume functionality and error recovery mechanisms for interrupted scraping sessions.",
+			"reasoning": "Adding resume capability and error recovery involves tracking progress, handling interruptions gracefully, and ensuring data integrity upon resumption. This adds complexity due to state management and error handling requirements."
+		}
+	]
+}
